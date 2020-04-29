@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-
 import api from '../../services/api';
 
 import logoImg from '../../assets/logo.svg';
@@ -34,18 +33,23 @@ interface Issue {
 }
 
 const Repository: React.FC = () => {
-  const { params } = useRouteMatch<RepositoryParams>();
   const [repository, setRepository] = useState<Repository | null>(null);
   const [issues, setIssues] = useState<Issue[]>([]);
 
-  useEffect(() => {
-    api.get(`repos/${params.repository}`).then(reponse => {
-      setRepository(reponse.data);
-    });
+  const { params } = useRouteMatch<RepositoryParams>();
 
-    api.get(`repos/${params.repository}/issues`).then(reponse => {
-      setIssues(reponse.data);
-    });
+  useEffect(() => {
+    async function loadData(): Promise<void> {
+      const [repositoryResponse, issuesResponse] = await Promise.all([
+        api.get(`repos/${params.repository}`),
+        api.get(`repos/${params.repository}/issues`),
+      ]);
+
+      setRepository(repositoryResponse.data);
+      setIssues(issuesResponse.data);
+    }
+
+    loadData();
   }, [params.repository]);
 
   return (
