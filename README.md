@@ -30,10 +30,12 @@
 
 This project was developed with the following technologies:
 
-- [Eslint](https://eslint.org/)
 - [Axios](https://github.com/axios/axios)
-- [React](https://reactjs.org/)
+- [Eslint](https://eslint.org/)
+- [Polished](https://polished.js.org/)
 - [Prettier](https://prettier.io/)
+- [React](https://reactjs.org/)
+- [Styled components](https://styled-components.com/)
 - [Typescript](https://www.typescriptlang.org/)
 
 ## :information_source: How To Use
