@@ -51,9 +51,6 @@ $ cd github-explorer && yarn
 
 # Run frontend
 $ yarn start
-
-# Run frontend tests
-$ yarn test
 ```
 
 ## :memo: License
